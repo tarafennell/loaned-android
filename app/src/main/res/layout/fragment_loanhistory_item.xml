@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <com.mattallen.loaned.views.RoundedImageView
+        android:id="@+id/loanhistory_item_pic_border"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_centerVertical="true"
+        android:layout_margin="8dp"
+        android:src="@drawable/col_main" />
+
+    <com.mattallen.loaned.views.RoundedImageView
+        android:id="@+id/loanhistory_item_pic"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="11dp" />
+
+    <ImageView
+        android:id="@+id/loanhistory_item_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/defaultContentDesc"
+        android:src="@drawable/ic_indicator" />
+
+    <TextView
+        android:id="@+id/loanhistory_item_dates"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_toLeftOf="@id/loanhistory_item_indicator"
+        android:layout_toRightOf="@id/loanhistory_item_pic_border"
+        android:fontFamily="sans-serif-condensed"
+        android:textColor="@color/text_subtle" />
+
+    <TextView
+        android:id="@+id/loanhistory_item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/loanhistory_item_dates"
+        android:layout_marginTop="-2dp"
+        android:layout_toLeftOf="@id/loanhistory_item_indicator"
+        android:layout_toRightOf="@id/loanhistory_item_pic_border"
+        android:fontFamily="sans-serif-condensed"
+        android:maxLines="1"
+        android:textColor="@color/text_main"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/loanhistory_item_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/loanhistory_item_name"
+        android:layout_marginTop="-4dp"
+        android:layout_toLeftOf="@id/loanhistory_item_indicator"
+        android:layout_toRightOf="@id/loanhistory_item_pic_border"
+        android:fontFamily="sans-serif-condensed"
+        android:maxLines="1"
+        android:paddingBottom="3dp"
+        android:textColor="@color/text_main"
+        android:textSize="18sp"
+        android:textStyle="italic" />
+
+</RelativeLayout>

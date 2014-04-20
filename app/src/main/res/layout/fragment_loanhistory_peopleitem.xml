@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:id="@+id/loanhistory_peopleitem_pic"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="5dp"
+        android:contentDescription="@string/defaultContentDesc" />
+
+    <ImageView
+        android:id="@+id/loanhistory_peopleitem_indicator"
+        android:layout_width="60dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/defaultContentDesc"
+        android:src="@drawable/ic_indicator" />
+
+    <TextView
+        android:id="@+id/loanhistory_peopleitem_dates"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_toLeftOf="@id/loanhistory_peopleitem_indicator"
+        android:layout_toRightOf="@id/loanhistory_peopleitem_pic"
+        android:fontFamily="sans-serif-condensed"
+        android:textColor="@color/text_subtle" />
+
+    <TextView
+        android:id="@+id/loanhistory_peopleitem_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/loanhistory_peopleitem_dates"
+        android:layout_marginTop="-2dp"
+        android:layout_toLeftOf="@id/loanhistory_peopleitem_indicator"
+        android:layout_toRightOf="@id/loanhistory_peopleitem_pic"
+        android:fontFamily="sans-serif-condensed"
+        android:maxLines="1"
+        android:textColor="@color/text_main"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/loanhistory_peopleitem_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/loanhistory_peopleitem_name"
+        android:layout_marginTop="-4dp"
+        android:layout_toLeftOf="@id/loanhistory_peopleitem_indicator"
+        android:layout_toRightOf="@id/loanhistory_peopleitem_pic"
+        android:fontFamily="sans-serif-condensed"
+        android:maxLines="1"
+        android:paddingBottom="3dp"
+        android:textColor="@color/text_main"
+        android:textSize="18sp"
+        android:textStyle="italic" />
+
+</RelativeLayout>

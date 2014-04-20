@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="dialog_addloan_alreadyonloan">This item is already on loan, Please choose another</string>
+    <string name="dialog_addbyname">Add By Name</string>
+    <string name="dialog_addfromcontacts">Add From Contacts</string>
+    <string name="dialog_deleteloan">Delete Loan</string>
+    <string name="dialog_notification_off">Turn Notification Off</string>
+    <string name="dialog_notification_on">Turn Notification On</string>
+    <string name="dialog_notreturned">Mark as Not Returned</string>
+    <string name="dialog_loanhistory_longclick">What Do You Want To Do?</string>
+    <string name="dialog_deleteloan_message">Are you sure you want to delete this loan?</string>
+    <string name="dialog_alreadyonloan_message">This item is already on loan to someone else. Please mark it as returned before changing this loan back to current</string>
+    <string name="dialog_change_category">Change Category</string>
+    <string name="dialog_changename">Change Name</string>
+    <string name="dialog_deleteitem">Delete Item</string>
+    <string name="dialog_deleteperson_message">Are you sure you want to delete this person and all their associated loans?</string>
+    <string name="dialog_deleteperson">Delete Person</string>
+    <string name="dialog_itemreturned_message">Has %s returned this item?</string>
+    <string name="dialog_noloansfound_title">No Loans Found</string>
+    <string name="dialog_noloansfound_message_item">No current loans were found for this item</string>
+    <string name="dialog_noloansfound_message_person">No current loans were found for this person</string>
+    <string name="dialog_deleteitem_message">Are you sure you want to delete this item and all it\'s associated loans?</string>
+    <string name="dialog_deleteperson_title">Delete From Loaned</string>
+    <string name="dialog_relink_to_contact">Re-Link To Contact</string>
+    <string name="dialog_link_to_contact">Link To Contact</string>
+    <string name="dialog_unlink_from_contact">Unlink From Contact</string>
+
+</resources>

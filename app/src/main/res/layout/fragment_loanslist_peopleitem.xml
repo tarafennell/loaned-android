@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <com.mattallen.loaned.views.RoundedImageView
+        android:id="@+id/loanslist_peopleitem_pic_border"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/col_main" />
+
+    <com.mattallen.loaned.views.RoundedImageView
+        android:id="@+id/loanslist_peopleitem_pic"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="15dp"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:id="@+id/loanslist_peopleitem_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/loanslist_peopleitem_pic_border"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:fontFamily="sans-serif-condensed"
+        android:textColor="@color/text_main"
+        android:textSize="22sp" />
+
+    <com.mattallen.loaned.views.RoundedImageView
+        android:id="@+id/loanslist_peopleitem_badge"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_margin="15dp"
+        android:src="@drawable/col_compliment" />
+
+    <TextView
+        android:id="@+id/loanslist_peopleitem_badgenumber"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_margin="15dp"
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="center_horizontal"
+        android:textColor="@color/text_light"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

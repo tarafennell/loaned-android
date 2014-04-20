@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="text_main">#444444</color>
+    <color name="text_light">#FFFFFF</color>
+    <color name="compliment">#FF9200</color>
+    <color name="accent_dark">#0B61A4</color>
+    <color name="accent_light">#66A3D2</color>
+    <color name="brand_colour">#3F92D2</color>
+    <color name="text_subtle">#777777</color>
+    <color name="btn_dark">#34495e</color>
+
+</resources>

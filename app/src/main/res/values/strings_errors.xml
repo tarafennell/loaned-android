@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="error_friendnotadded">Person could not be added</string>
+    <string name="error_emptyname">No name entered, please try again</string>
+    <string name="error_gettingloans">Error Getting Loans</string>
+    <string name="error_cantcancelloan">Unable to cancel loan</string>
+    <string name="error_unable_to_get_loan">Unable to get details of loan</string>
+    <string name="error_setting_as_returned">There was a problem setting this item as returned</string>
+    <string name="error_deleting_item_and_associated">There was a problem deleting this item and it\'s associated loans</string>
+    <string name="error_deleting_person_and_associated">There was a problem deleting this person and their associated loans</string>
+
+</resources>

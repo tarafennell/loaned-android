@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="type_electrical">Electrical</string>
+    <string name="type_dvd_game">DVD/Blu-Ray/Game</string>
+    <string name="type_musical_instr">Musical Instrument</string>
+    <string name="type_tools">Tools</string>
+    <string name="type_jewellery">Jewellery</string>
+    <string name="type_clothes">Clothes</string>
+    <string name="type_furniture">Furniture</string>
+    <string name="type_stationary">Stationary</string>
+    <string name="type_kitchen">Kitchen Tools</string>
+    <string name="type_other">Other</string>
+
+</resources>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="@string/settings_general_title" >
+        <Preference
+            android:key="feedback"
+            android:selectable="true"
+            android:summary="@string/settings_feedback_summary"
+            android:title="@string/settings_feedback_title" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="defaultList"
+            android:summaryOff="@string/settings_startfragment_descOff"
+            android:summaryOn="@string/settings_startfragment_descOn"
+            android:title="@string/settings_startfragment_title" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/settings_loans_title" >
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/settings_dateformat_keys"
+            android:entryValues="@array/settings_dateformat_values"
+            android:key="dateformat"
+            android:negativeButtonText="@string/cancel"
+            android:positiveButtonText="@null"
+            android:summary="@string/settings_dateformat_desc"
+            android:title="@string/settings_dateformat_title" />
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/settings_notification_keys"
+            android:entryValues="@array/settings_notification_values"
+            android:key="notifications"
+            android:negativeButtonText="@string/cancel"
+            android:positiveButtonText="@null"
+            android:summary="@string/settings_notification_desc"
+            android:title="@string/settings_notification_title" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

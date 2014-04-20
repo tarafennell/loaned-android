@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/stats_averagereturn_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="@string/stats_averageloan"
+            android:textColor="@color/text_subtle"
+            android:textSize="18sp"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/stats_averagereturn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/stats_averagereturn_label"
+            android:layout_marginTop="5dp"
+            android:fontFamily="sans-serif-thin"
+            android:gravity="center_horizontal"
+            android:textColor="@color/text_main"
+            android:textSize="60sp" />
+
+        <TextView
+            android:id="@+id/stats_piechart_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/stats_averagereturn"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="@string/stats_mostloaneditem"
+            android:textColor="@color/text_subtle"
+            android:textSize="18sp"
+            android:textStyle="italic" />
+
+        <com.mattallen.loaned.views.ItemLoanPieChartView
+            android:id="@+id/stats_piechart"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_below="@id/stats_piechart_label"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="5dp" />
+
+        <TextView
+            android:id="@+id/stats_barchart_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/stats_piechart"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="@string/stats_personloanedtomost"
+            android:textColor="@color/text_subtle"
+            android:textSize="18sp"
+            android:textStyle="italic" />
+
+        <com.mattallen.loaned.views.PersonBarChartView
+            android:id="@+id/stats_barchart"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_below="@id/stats_barchart_label"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="5dp" />
+
+        <TextView
+            android:id="@+id/stats_empty"
+            style="@style/EmptyStateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="sans-serif-condensed"
+            android:text="@string/stats_noloans"
+            android:visibility="invisible" />
+
+        <ProgressBar
+            android:id="@+id/stats_progress"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+</ScrollView>
