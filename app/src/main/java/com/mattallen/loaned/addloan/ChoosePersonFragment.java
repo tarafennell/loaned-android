@@ -26,6 +26,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ListView;
@@ -33,13 +34,14 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ChoosePersonFragment extends Fragment implements OnItemClickListener {
+public class ChoosePersonFragment extends Fragment implements OnItemClickListener, View.OnClickListener {
 
 	private static final String				TAG = ChoosePersonFragment.class.getSimpleName();
 
 	public static final int 				PICK_CONTACT_REQUEST = 1;
 
 	private TextView						mEmptyState;
+    private Button                          mAddPersonBtn;
 	private ProgressBar						mProgress;
 	private ListView						mList;
 	private ChoosePersonAdapter				mAdapter;
@@ -58,9 +60,11 @@ public class ChoosePersonFragment extends Fragment implements OnItemClickListene
 		super.onCreateView(inflater, container, savedInstanceState);
 		View v = inflater.inflate(R.layout.fragment_chooseperson, container, false);
 		mEmptyState = (TextView)v.findViewById(R.id.chooseperson_emptystate);
+        mAddPersonBtn = (Button)v.findViewById(R.id.chooseperson_addperson);
 		mProgress = (ProgressBar)v.findViewById(R.id.chooseperson_progress);
 		mList = (ListView)v.findViewById(R.id.chooseperson_list);
 		mList.setOnItemClickListener(this);
+        mAddPersonBtn.setOnClickListener(this);
 		mDB = new DatabaseManager(getActivity());
 		Log.d(TAG, "Fragment created");
 		return v;
@@ -99,25 +103,7 @@ public class ChoosePersonFragment extends Fragment implements OnItemClickListene
 		super.onOptionsItemSelected(item);
 		switch (item.getItemId()) {
 		case R.id.action_addperson:
-			Log.d(TAG, "Add person menu item clicked");
-			AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
-			dialog.setTitle(R.string.action_addperson);
-			dialog.setItems(new CharSequence[]{getActivity().getResources().getString(R.string.dialog_addfromcontacts),
-					getActivity().getResources().getString(R.string.dialog_addbyname)}, new DialogInterface.OnClickListener() {
-
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					if (which==0){
-						Log.d(TAG, "Opening contact picker");
-						openContactPicker();
-					}
-					else if(which==1){
-						Log.d(TAG, "Showing name entry dialog");
-						addFriendByName();
-					}
-				}
-			});
-			dialog.show();
+			showAddFriendDialog();
 			return true;
 
 		default:
@@ -125,6 +111,28 @@ public class ChoosePersonFragment extends Fragment implements OnItemClickListene
 		}
 		return false;
 	}
+
+    private void showAddFriendDialog(){
+        Log.d(TAG, "Add person menu item clicked");
+        AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+        dialog.setTitle(R.string.action_addperson);
+        dialog.setItems(new CharSequence[]{getActivity().getResources().getString(R.string.dialog_addfromcontacts),
+                getActivity().getResources().getString(R.string.dialog_addbyname)}, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (which==0){
+                    Log.d(TAG, "Opening contact picker");
+                    openContactPicker();
+                }
+                else if(which==1){
+                    Log.d(TAG, "Showing name entry dialog");
+                    addFriendByName();
+                }
+            }
+        });
+        dialog.show();
+    }
 
 	public void addFriendByName(){
 		AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
@@ -170,15 +178,29 @@ public class ChoosePersonFragment extends Fragment implements OnItemClickListene
 	private void openContactPicker(){
 		Intent pickContactIntent = new Intent(Intent.ACTION_GET_CONTENT);
 		pickContactIntent.setType(ContactsContract.Contacts.CONTENT_ITEM_TYPE);
-		getActivity().startActivityForResult(pickContactIntent, PICK_CONTACT_REQUEST);
+        try {
+            getActivity().startActivityForResult(pickContactIntent, PICK_CONTACT_REQUEST);
+        } catch (NullPointerException e){
+            Log.e(TAG,e.getMessage());
+            // Give user some information here
+            Toast.makeText(getActivity(),"Unable to open contact picker.\nPlease report problem",Toast.LENGTH_SHORT).show();
+        }
 	}
 
-	private class GetPeople extends AsyncTask<Void, Void, Exception>{
+    @Override
+    public void onClick(View v) {
+        if(v.getId()==R.id.chooseperson_addperson){
+            showAddFriendDialog();
+        }
+    }
+
+    private class GetPeople extends AsyncTask<Void, Void, Exception>{
 		@Override
 		protected void onPreExecute(){
 			mProgress.setVisibility(ProgressBar.VISIBLE);
 			mList.setVisibility(GridView.INVISIBLE);
 			mEmptyState.setVisibility(TextView.INVISIBLE);
+            mAddPersonBtn.setVisibility(Button.INVISIBLE);
 			mPeople = null;
 		}
 		@Override
@@ -203,6 +225,7 @@ public class ChoosePersonFragment extends Fragment implements OnItemClickListene
 					mList.setVisibility(ListView.VISIBLE);
 				} else {
 					mEmptyState.setVisibility(TextView.VISIBLE);
+                    mAddPersonBtn.setVisibility(Button.VISIBLE);
 				}
 			}
 		}

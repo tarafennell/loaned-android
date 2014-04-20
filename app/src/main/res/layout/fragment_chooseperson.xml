@@ -28,4 +28,22 @@
         android:visibility="invisible" >
     </TextView>
 
+    <Button
+        android:id="@+id/chooseperson_addperson"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/action_addperson"
+        android:background="@color/brand_colour"
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="center_horizontal|center_vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/chooseperson_emptystate"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textAllCaps="true"
+        android:textColor="@color/text_light"
+        android:textSize="22sp"
+        android:textStyle="bold"/>
+
 </RelativeLayout>
