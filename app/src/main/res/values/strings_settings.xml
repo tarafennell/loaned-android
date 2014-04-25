@@ -37,7 +37,7 @@
     </string-array>
 
     <string name="settings_startfragment_title">Show Item List By Default</string>
-    <string name="settings_startfragment_descOn">Will show the item list by default</string>
-    <string name="settings_startfragment_descOff">Will show the person list by default</string>
+    <string name="settings_startfragment_descOn">Currently showing the item list by default</string>
+    <string name="settings_startfragment_descOff">Currently showing the person list by default</string>
 
 </resources>
