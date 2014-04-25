@@ -48,7 +48,9 @@ public class StatsFragment extends Fragment {
 	@Override
 	public void onCreateOptionsMenu(Menu menu,MenuInflater inf){
 		super.onCreateOptionsMenu(menu, inf);
-		inf.inflate(R.menu.stats, menu);
+        // Check if the menu already has items in it.
+        // Otherwise we could cause a duplicate menu item issue.
+		if(menu.size()==0)inf.inflate(R.menu.stats, menu);
 	}
 
 	@Override

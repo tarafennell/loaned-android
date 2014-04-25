@@ -78,9 +78,19 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		FragmentTransaction mFragMan = getFragmentManager().beginTransaction();
 		// Check what the default is
 		if(SettingsFragment.isShowingItemList(this)){
-			mFragMan.add(mFrameLayout, mLoansByItemFrag);
+			if(savedInstanceState!=null){
+                // Check savedInstanceState to determine is an orientation
+                // change just happened, if so then replace instead to stop overlapping
+                mFragMan.add(mFrameLayout, mLoansByItemFrag);
+            } else {
+                mFragMan.replace(mFrameLayout, mLoansByItemFrag);
+            }
 		} else {
-			mFragMan.add(mFrameLayout, mLoansByPeopleFrag);
+            if(savedInstanceState!=null){
+                mFragMan.add(mFrameLayout, mLoansByPeopleFrag);
+            } else {
+                mFragMan.replace(mFrameLayout, mLoansByPeopleFrag);
+            }
 		}
 		setActivityTitle(getResources().getString(R.string.app_name), null);
 		mFragMan.commit();

@@ -46,7 +46,9 @@ public class LoansByItemFragment extends Fragment implements OnItemClickListener
 	@Override
 	public void onCreateOptionsMenu(Menu menu,MenuInflater inf){
 		super.onCreateOptionsMenu(menu, inf);
-		inf.inflate(R.menu.loanslist, menu);
+        // Check if the menu already has items in it.
+        // Otherwise we could cause a duplicate menu item issue.
+        if(menu.size()==0)inf.inflate(R.menu.loanslist, menu);
 	}
 
 	@Override
