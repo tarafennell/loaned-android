@@ -3,6 +3,7 @@ apply plugin: 'android'
 android {
     compileSdkVersion 19
     buildToolsVersion '19.0.3'
+
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 19
@@ -16,12 +17,7 @@ android {
         }
     }
     buildTypes {
-        release {
-            runProguard false
-            debuggable false
-            signingConfig signingConfigs.playStore
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
-        }
+
     }
     productFlavors {
         stage {
@@ -31,6 +27,14 @@ android {
             versionCode 3
             versionName 'debug'
             testPackageName 'com.mattallen.loaned.debug'
+        }
+        prod {
+            minSdkVersion 14
+            packageName 'com.mattallen.loaned'
+            targetSdkVersion 19
+            versionCode 3
+            versionName '1.0.2'
+            signingConfig signingConfigs.playStore
         }
     }
 }
