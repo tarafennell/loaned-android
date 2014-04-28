@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Loaned Debug</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_addperson">Add A Person</string>
+    <string name="action_additem">Add New Item</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="okay">Okay</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="navdrawer_showbyperson">Show By Person</string>
+    <string name="navdrawer_showbyitem">Show By Item</string>
+    <string name="navdrawer_addloan">Add Loan</string>
+    <string name="navdrawer_stats">Stats</string>
+    <string name="navdrawer_settings">Settings</string>
+    <string name="main_navdrawer_open">Open Drawer</string>
+    <string name="main_navdrawer_close">Close Drawer</string>
+    <string name="main_noloans">Nothing Here Yet.\nGet Started By Adding A Loan</string>
+    <string name="chooseperson_empty">You Haven\'t Added Anyone Yet</string>
+    <string name="chooseitem_empty">You Haven\'t Added Any\nPossessions Yet</string>
+    <string name="additem_namehint">Item Name</string>
+    <string name="defaultContentDesc">Content Description</string>
+    <string name="loanhistory_itemdetails_onloan">On Loan</string>
+    <string name="loanhistory_itemdetails_notonloan">Not Currently On Loan</string>
+    <string name="loanhistory">Loan History</string>
+    <string name="loanhistory_persondetails_noloans">Nothing On Loan</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="loanhistory_noloans_person">You Haven\'t Loaned This\nPerson Anything</string>
+    <string name="loanhistory_noloans_item">You Haven\'t Loaned\nThis Item Out</string>
+    <string name="itemdetails_btn_returned">Returned</string>
+    <string name="itemdetails_btn_edit">Update</string>
+    <string name="persondetails_btn_returned">Item Returned</string>
+    <string name="persondetails_btn_edit">Update</string>
+    <string name="stats_noloans">No Loans Found\nNo Stats Could Be Generated</string>
+    <string name="stats_averageloan">Average Loan Length</string>
+    <string name="stats_mostloaneditem">Most Loaned Item</string>
+    <string name="stats_personloanedtomost">Person Loaned To Most</string>
+    <string name="stats_averageloan_value">%d days</string>
+    <string name="loanhistory_stillonloan">Still On Loan</string>
+    <string name="loanhistory_loanedlessthanaday">Loaned for less than a day</string>
+    <string name="loanhistory_daysloaned">Loaned for %d days</string>
+    <string name="loanhistory_persondetails_itemsonloan">%d Items On Loan</string>
+
+</resources>

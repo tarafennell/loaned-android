@@ -2,17 +2,35 @@ apply plugin: 'android'
 
 android {
     compileSdkVersion 19
-    buildToolsVersion "19.0.3"
-
+    buildToolsVersion '19.0.3'
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 19
     }
-
+    signingConfigs {
+        playStore {
+            storeFile file('loaned_dist.keystore')
+            keyAlias 'loaned'
+            keyPassword 'androidKey-Loaned7820145'
+            storePassword 'androidKey-Loaned7820145'
+        }
+    }
     buildTypes {
         release {
             runProguard false
+            debuggable false
+            signingConfig signingConfigs.playStore
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+    productFlavors {
+        stage {
+            minSdkVersion 14
+            packageName 'com.mattallen.loaned.debug'
+            targetSdkVersion 19
+            versionCode 3
+            versionName 'debug'
+            testPackageName 'com.mattallen.loaned.debug'
         }
     }
 }
