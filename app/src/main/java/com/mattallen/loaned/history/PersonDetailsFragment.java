@@ -61,7 +61,11 @@ public class PersonDetailsFragment extends LoanHistoryFragment implements OnClic
 		Log.d(TAG,"Updating UI");
 		mReturned.setEnabled(true);
 		mPerson = ((LoanHistoryActivity)getActivity()).getPerson();
-		new RetrieveContactPhoto(mPerson.getLookupURI(), mPic, getActivity(), R.drawable.friend_image_light).execute();
+		new RetrieveContactPhoto(
+                mPerson.getLookupURI(),
+                mPic, getActivity(),
+                R.drawable.friend_image_light
+        ).execute();
 		mName.setText(mPerson.getName());
 		if(mPerson.getItemsOnLoan()>0){
 			mStatus.setText(String.format(getActivity().getString(
