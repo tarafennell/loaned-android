@@ -133,7 +133,7 @@ public class AddLoanActivity extends Activity implements AddLoanCallback {
 				mFrame.setVisibility(FrameLayout.VISIBLE);
 				Toast.makeText(mContext, e.getMessage(), Toast.LENGTH_SHORT).show();
 			} else {
-				new SetAlarm(mContext, loan);
+				SetAlarm.setAlarm(mContext, loan);
 				finish();
 			}
 		}

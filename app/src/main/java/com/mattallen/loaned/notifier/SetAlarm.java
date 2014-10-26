@@ -11,8 +11,9 @@ import com.mattallen.loaned.settings.SettingsFragment;
 
 public class SetAlarm {
 
-	public SetAlarm(Context c, Loan loan){
-		if(loan.isNotifying() && SettingsFragment.getNotificationPreference(c)!=SettingsFragment.NOTIFICATIONS_OFF){
+	public static void setAlarm(Context c, Loan loan){
+		if (loan.isNotifying() && SettingsFragment.getNotificationPreference(c)!=SettingsFragment.NOTIFICATIONS_OFF)
+		{
 			AlarmManager alMan = (AlarmManager) c.getSystemService(Context.ALARM_SERVICE);
 			Intent intent = new Intent(c, WakeupReceiver.class);
 			Bundle b = new Bundle();
