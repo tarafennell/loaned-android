@@ -21,16 +21,8 @@ public class Loan {
 		return itemID;
 	}
 
-	public void setItemID(int itemID) {
-		this.itemID = itemID;
-	}
-
 	public int getPersonID() {
 		return personID;
-	}
-
-	public void setPersonID(int personID) {
-		this.personID = personID;
 	}
 
 	public boolean isNotifying() {
@@ -43,10 +35,6 @@ public class Loan {
 
 	public Date getStartDate() {
 		return startDate;
-	}
-
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
 	}
 
 	public Date getReturnDate() {
