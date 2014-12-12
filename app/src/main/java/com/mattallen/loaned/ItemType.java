@@ -1,4 +1,4 @@
-package com.mattallen.loaned.views;
+package com.mattallen.loaned;
 
 /**
  * Created by Tara on 12/12/2014.

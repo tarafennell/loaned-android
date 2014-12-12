@@ -11,7 +11,7 @@ import com.mattallen.loaned.Item;
 import com.mattallen.loaned.ItemTypeLookup;
 import com.mattallen.loaned.Loan;
 import com.mattallen.loaned.Person;
-import com.mattallen.loaned.views.ItemType;
+import com.mattallen.loaned.ItemType;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
