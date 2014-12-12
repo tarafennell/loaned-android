@@ -42,5 +42,9 @@
     <string name="loanhistory_loanedlessthanaday">Loaned for less than a day</string>
     <string name="loanhistory_daysloaned">Loaned for %d days</string>
     <string name="loanhistory_persondetails_itemsonloan">%d Items On Loan</string>
+    <string name="add_new_item">Add New Item</string>
+    <string name="name">Name:&#160;</string>
+    <string name="category">Category:&#160;</string>
+    <string name="add_item">Add Item</string>
 
 </resources>

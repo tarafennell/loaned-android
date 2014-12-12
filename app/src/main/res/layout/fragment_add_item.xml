@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/EmptyStateText"
+        android:text="@string/add_new_item"
+        android:id="@+id/add_new_item"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/add_new_item"
+        android:text="@string/name"
+        android:id="@+id/additem_nametitle" />
+
+    <EditText
+        android:id="@+id/additem_nameentry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/additem_namehint"
+        android:layout_below="@+id/add_new_item"
+        android:layout_toRightOf="@+id/additem_nametitle" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/additem_nameentry"
+        android:text="@string/category"
+        android:id="@+id/additem_typetitle" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:id="@android:id/list"
+        android:layout_below="@+id/additem_typetitle"
+        android:layout_above="@+id/button_bar"
+        android:choiceMode="singleChoice" />
+
+    <LinearLayout
+        android:id="@+id/button_bar"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@android:style/ButtonBar"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@android:string/cancel"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/add_item"/>
+        </LinearLayout>
+
+
+</RelativeLayout>

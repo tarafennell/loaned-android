@@ -1,22 +1,24 @@
 package com.mattallen.loaned.storage;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.Locale;
-
-import com.mattallen.loaned.Item;
-import com.mattallen.loaned.Loan;
-import com.mattallen.loaned.Person;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
+
+import com.mattallen.loaned.Item;
+import com.mattallen.loaned.ItemTypeLookup;
+import com.mattallen.loaned.Loan;
+import com.mattallen.loaned.Person;
+import com.mattallen.loaned.views.ItemType;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.Locale;
 
 public class DatabaseManager extends SQLiteOpenHelper {
 
@@ -47,8 +49,16 @@ public class DatabaseManager extends SQLiteOpenHelper {
 	private static final String			ITEMS_TIMESLOANED = "timesLoaned";
 	private static final String			ITEMS_CURRENTLYONLOAN = "currentlyOnLoan";
 
-	public DatabaseManager(Context context) {
+    private static final String         TYPE_TABLENAME = "type";
+    private static final String         TYPE_ID = "_id";
+    public static final String			TYPE_NAME = "name";
+    public static final String			TYPE_ICON = "icon";
+
+    private final Context mContext;
+
+    public DatabaseManager(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.mContext = context;
 	}
 
 	@Override
@@ -62,11 +72,26 @@ public class DatabaseManager extends SQLiteOpenHelper {
 		// Create loans table
 		db.execSQL(String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s INTEGER, %s INTEGER, %s STRING, %s STRING, %s INTEGER)",
 				LOAN_TABLENAME, LOAN_ID, LOAN_PERSONID, LOAN_ITEMID, LOAN_STARTDATE, LOAN_RETURNDATE, LOAN_NOTIFY));
+        // Create type table
+        db.execSQL(String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s STRING, %s INTEGER)",
+                TYPE_TABLENAME, TYPE_ID, TYPE_NAME, TYPE_ICON));
+
+        //create default types
+
+
+        ArrayList<String> types = new ArrayList<String>();
+        for(int i=0;i<=9;i++){
+            db.execSQL(String.format("INSERT INTO %s (%s, %s)" +
+                            "VALUES ('%s', '" + ItemTypeLookup.getDrawableForType(i) + "');",
+                    TYPE_TABLENAME, TYPE_NAME, TYPE_ICON, ItemTypeLookup.getNameByID(mContext, i)
+            ));
+        }
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		// No upgrade path needed yet
+        //FIXME add upgrade code
 	}
 
 	public ArrayList<Person> getAllPeople(){
@@ -105,6 +130,25 @@ public class DatabaseManager extends SQLiteOpenHelper {
 		return items;
 	}
 
+    public ArrayList<ItemType> getAllItemTypes(){
+        SQLiteDatabase db = getReadableDatabase();
+        ArrayList<ItemType> items = new ArrayList<ItemType>();
+        Cursor c;
+        c = db.query(TYPE_TABLENAME, null, null, null, null, null, null);
+        if(c.moveToFirst()){
+            do{
+                items.add(new ItemType(c.getInt(0), c.getString(1), c.getInt(2)));
+            }while(c.moveToNext());
+        }
+        db.close();
+        return items;
+    }
+
+    public Cursor getItemTypesCursor(){
+        SQLiteDatabase db = getReadableDatabase();
+        return  db.query(TYPE_TABLENAME, null, null, null, null, null, null);
+    }
+
 	public Item getItemByID(int itemID){
 		SQLiteDatabase db = getReadableDatabase();
 		Cursor c = db.query(ITEMS_TABLENAME, null, ITEMS_ID+"=?", new String[]{Integer.toString(itemID)}, null, null, null);
@@ -119,6 +163,17 @@ public class DatabaseManager extends SQLiteOpenHelper {
 		db.close();
 		return null;
 	}
+
+    public ItemType getItemTypeByID(int itemTypeID){
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.query(TYPE_TABLENAME, null, TYPE_ID+"=?", new String[]{Integer.toString(itemTypeID)}, null, null, null);
+        if(c.moveToFirst()){
+            db.close();
+            return new ItemType(c.getInt(0), c.getString(1), c.getInt(2));
+        }
+        db.close();
+        return null;
+    }
 
 	public Person getPersonByID(int personID){
 		SQLiteDatabase db = getReadableDatabase();
@@ -244,19 +299,28 @@ public class DatabaseManager extends SQLiteOpenHelper {
 	}
 
 	public void updateItem(Item item){
-		SQLiteDatabase db = getWritableDatabase();
-		ContentValues values = new ContentValues();
-		values.put(ITEMS_NAME, item.getName());
-		values.put(ITEMS_TYPE, item.getType());
-		if(item.isCurrentlyOnLoan()){
-			values.put(ITEMS_CURRENTLYONLOAN, 1);
-		} else {
-			values.put(ITEMS_CURRENTLYONLOAN, 0);
-		}
-		values.put(ITEMS_TIMESLOANED, item.getTimesLoaned());
-		db.update(ITEMS_TABLENAME, values, ITEMS_ID+"=?", new String[]{Integer.toString(item.getItemID())});
-		db.close();
-	}
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(ITEMS_NAME, item.getName());
+        values.put(ITEMS_TYPE, item.getType());
+        if(item.isCurrentlyOnLoan()){
+            values.put(ITEMS_CURRENTLYONLOAN, 1);
+        } else {
+            values.put(ITEMS_CURRENTLYONLOAN, 0);
+        }
+        values.put(ITEMS_TIMESLOANED, item.getTimesLoaned());
+        db.update(ITEMS_TABLENAME, values, ITEMS_ID+"=?", new String[]{Integer.toString(item.getItemID())});
+        db.close();
+    }
+
+    public void updateItemType(ItemType itemType){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(TYPE_NAME, itemType.getName());
+        values.put(TYPE_ICON, itemType.getIconId());
+        db.update(TYPE_TABLENAME, values, TYPE_ID+"=?", new String[]{Integer.toString(itemType.getItemTypeID())});
+        db.close();
+    }
 
 	public void updateLoan(Loan loan){
 		SQLiteDatabase db = getWritableDatabase();
@@ -332,6 +396,12 @@ public class DatabaseManager extends SQLiteOpenHelper {
 		}
 	}
 
+    public void removeItemType(ItemType itemType) throws ParseException{
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete(TYPE_TABLENAME, ITEMS_ID+"=?", new String[]{Integer.toString(itemType.getItemTypeID())});
+        db.close();
+    }
+
 	public void addPerson(String name, Uri lookup, int itemsOnLoan, int itemsLoaned){
 		SQLiteDatabase db = getWritableDatabase();
 		ContentValues values = new ContentValues();
@@ -357,6 +427,15 @@ public class DatabaseManager extends SQLiteOpenHelper {
 		db.insert(ITEMS_TABLENAME, null, values);
 		db.close();
 	}
+
+    public void addItemType(String name, int icon){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(TYPE_NAME, name);
+        values.put(TYPE_ICON, icon);
+        db.insert(TYPE_TABLENAME, null, values);
+        db.close();
+    }
 
 	public void addLoan(int personID, int itemID, Date startDate, boolean notify){
 		SQLiteDatabase db = getWritableDatabase();
