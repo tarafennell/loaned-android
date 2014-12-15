@@ -1,17 +1,7 @@
 package com.mattallen.loaned.addloan;
 
-import java.util.ArrayList;
-
-import com.mattallen.loaned.Item;
-import com.mattallen.loaned.ItemTypeLookup;
-import com.mattallen.loaned.R;
-import com.mattallen.loaned.storage.DatabaseManager;
-
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Fragment;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,14 +13,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.mattallen.loaned.Item;
+import com.mattallen.loaned.R;
+import com.mattallen.loaned.storage.DatabaseManager;
+
+import java.util.ArrayList;
 
 public class ChooseItemFragment extends Fragment implements OnItemClickListener {
 
@@ -107,35 +100,7 @@ public class ChooseItemFragment extends Fragment implements OnItemClickListener 
 	}
 	
 	private void showAddItemDialog(){
-		AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
-		LayoutInflater li = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View v = li.inflate(R.layout.dialog_additem, null);
-		final Spinner type = (Spinner)v.findViewById(R.id.additem_typespinner);
-		type.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, ItemTypeLookup.getAllTypes(getActivity())));
-		final EditText name = (EditText)v.findViewById(R.id.additem_nameentry);
-		dialog.setView(v);
-		dialog.setTitle(R.string.action_additem);
-		dialog.setPositiveButton(R.string.okay, new DialogInterface.OnClickListener() {
-			
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				if(name.getText().toString().length()>0){
-					String text = name.getText().toString();
-					Log.d(TAG, "Adding "+text+" to DB");
-					Log.d(TAG,"Type: "+ItemTypeLookup.getNameByID(getActivity(), type.getSelectedItemPosition()));
-					mDB.addItem(text, type.getSelectedItemPosition());
-					new GetItems().execute();
-				}
-			}
-		});
-		dialog.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-			
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				dialog.dismiss();
-			}
-		});
-		dialog.show();
+        mCallback.onCreateNewItem();
 	}
 	
 	private class GetItems extends AsyncTask<Void, Void, Exception>{

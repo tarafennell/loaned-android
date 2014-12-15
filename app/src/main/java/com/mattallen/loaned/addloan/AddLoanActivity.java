@@ -1,14 +1,5 @@
 package com.mattallen.loaned.addloan;
 
-import java.util.Date;
-
-import com.mattallen.loaned.Item;
-import com.mattallen.loaned.Loan;
-import com.mattallen.loaned.Person;
-import com.mattallen.loaned.R;
-import com.mattallen.loaned.notifier.SetAlarm;
-import com.mattallen.loaned.storage.DatabaseManager;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -24,6 +15,15 @@ import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.mattallen.loaned.Item;
+import com.mattallen.loaned.Loan;
+import com.mattallen.loaned.Person;
+import com.mattallen.loaned.R;
+import com.mattallen.loaned.notifier.SetAlarm;
+import com.mattallen.loaned.storage.DatabaseManager;
+
+import java.util.Date;
 
 public class AddLoanActivity extends Activity implements AddLoanCallback {
 
@@ -103,7 +103,18 @@ public class AddLoanActivity extends Activity implements AddLoanCallback {
 		}
 	}
 
-	private class SaveLoan extends AsyncTask<Void, Void, Exception>{
+    @Override
+    public void onCreateNewItem() {
+        Log.d(TAG, "New item button clicked");
+        AddNewItemFragment mAddNewItem = new AddNewItemFragment();
+        FragmentTransaction mFragMan = getFragmentManager().beginTransaction();
+//        mFragMan.setCustomAnimations(R.anim.action_top_right_to_bottom_left,0);
+        mFragMan.replace(mFrameLayout, mAddNewItem);
+        mFragMan.addToBackStack(null);
+        mFragMan.commit();
+    }
+
+    private class SaveLoan extends AsyncTask<Void, Void, Exception>{
 		private Loan loan;
 		@Override
 		protected void onPreExecute(){

@@ -19,7 +19,7 @@ public class ItemTypeAdapter extends CursorAdapter {
 
     private final LayoutInflater mInflater;
 
-    private int layout = R.layout.list_item_type;
+    private int layout = R.layout.fragment_chooseitem_item;
 
     public ItemTypeAdapter(Context context, Cursor c, boolean autoRequery) {
         super(context, c, autoRequery);
@@ -40,11 +40,11 @@ public class ItemTypeAdapter extends CursorAdapter {
         int icon = cursor.getInt(cursor.getColumnIndex(DatabaseManager.TYPE_ICON));
 
         ImageView iconImageView = (ImageView) view
-                .findViewById(R.id.type_icon);
+                .findViewById(R.id.chooseitem_pic);
         iconImageView.setBackgroundResource(icon);
 
         TextView nameTextView = (TextView) view
-                .findViewById(R.id.type_name);
+                .findViewById(R.id.chooseitem_name);
         nameTextView.setText(name);
     }
 }
